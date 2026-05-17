@@ -1,54 +1,44 @@
-# AgenticClinic Roadmap
+# Roadmap
 
-Each phase is intentionally small — one deliverable per phase.
+Small, sequential phases. Each phase should be fully working before the next begins.
 
-## Phase 1 — Project Scaffold
+---
 
-- Initialize Next.js project with TypeScript, Tailwind, ESLint, Prettier
-- Verify dev server runs and renders a placeholder page
+## Phase 1 — Core Data (DONE)
+- Prisma schema: Agent, Ailment, Therapy, Appointment models
+- SQLite database with seed data
+- Prisma migrations in place
 
-## Phase 2 — Landing Page
+## Phase 2 — Pages & API Routes (DONE)
+- `/` Home / landing page
+- `/agents` — list all agents
+- `/agents/new` — register a new agent
+- `/agents/[id]` — agent profile
+- `/agents/[id]/dashboard` — agent dashboard
+- `/ailments` — list ailments
+- `/therapies` — list therapies
+- `/book` — book an appointment
+- `/staff` — staff management view
+- REST API routes for agents, ailments, therapies, appointments
 
-- Static landing page introducing AgenticClinic
-- Hero section, tagline, and basic navigation shell
-- Responsive layout for modern browsers
+## Phase 3 — UI Polish (DONE)
+- Shared layout: Header, Footer, MainLayout
+- Tailwind + PicoCSS styling
+- Loading states and error boundaries on key routes
 
-## Phase 3 — Data Model
+## Phase 4 — Authentication
+- Add login / session management
+- Protect staff routes and agent management behind auth
+- Decide on provider (credentials-based or OAuth)
 
-- Set up Prisma with SQLite
-- Define core models: Agent, Ailment, Therapy, Appointment
-- Seed database with sample data
+## Phase 5 — Testing Coverage
+- Define testing strategy (unit, integration, e2e)
+- API route tests with real SQLite test database
+- Key UI flow tests (booking, agent registration)
+- Achieve meaningful coverage on critical paths
 
-## Phase 4 — Agent List
-
-- API route: `GET /api/agents`
-- Page displaying all registered agents
-
-## Phase 5 — Agent Detail & Registration
-
-- Agent detail view
-- Form to register a new agent
-
-## Phase 6 — Ailments & Therapies Catalog
-
-- API routes for ailments and therapies
-- Browsable catalog pages
-
-## Phase 7 — Appointment Booking
-
-- Booking form: select agent, ailment, therapy, date
-- API route to create and list appointments
-
-## Phase 8 — Staff Dashboard
-
-- Protected staff view
-- Overview of upcoming appointments, agent stats
-
-## Phase 9 — Agent Dashboard
-
-- Agent-facing view of their appointments and therapy history
-
-## Phase 10 — Polish & Launch Prep
-
-- UI refinements, loading states, error handling
-- Final review and deploy to Vercel
+## Phase 6 — Deployment
+- Choose deployment target (Vercel, Docker, etc.)
+- Add environment configuration for production database
+- Set up CI pipeline (lint, typecheck, tests on push)
+- Document deployment steps in README

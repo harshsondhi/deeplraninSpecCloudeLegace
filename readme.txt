@@ -19,3 +19,10 @@ add target audienceto the mission:
 - course students learning pec-driven development with AI coding agents
 - developers giving AI coding demos at conference booths
 =====
+
+
+thsi project is based on following app
+/Users/harshbsondhi/GenAICourses/Deaplearning/SpecDriven/harshWS
+cam you coppy souce code for bare application so tht sever and pages anf bdb is up 
+please coply no *md fils or directory related to skil promt oh pannong validation
+make the aopp start the sever validae its up

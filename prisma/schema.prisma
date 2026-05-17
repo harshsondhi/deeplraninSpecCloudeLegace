@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Agent {
+  id           String        @id @default(cuid())
+  name         String
+  model        String
+  description  String
+  createdAt    DateTime      @default(now())
+  appointments Appointment[]
+}
+
+model Ailment {
+  id           String        @id @default(cuid())
+  name         String
+  description  String
+  appointments Appointment[]
+}
+
+model Therapy {
+  id              String        @id @default(cuid())
+  name            String
+  description     String
+  durationMinutes Int
+  appointments    Appointment[]
+}
+
+model Appointment {
+  id        String   @id @default(cuid())
+  agentId   String
+  ailmentId String
+  therapyId String
+  date      DateTime
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+
+  agent   Agent   @relation(fields: [agentId], references: [id])
+  ailment Ailment @relation(fields: [ailmentId], references: [id])
+  therapy Therapy @relation(fields: [therapyId], references: [id])
+}
