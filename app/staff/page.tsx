@@ -1,30 +1,7 @@
 import { db } from '@/lib/db'
 import StaffActions from './StaffActions'
 
-export default async function StaffPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ pw?: string }>
-}) {
-  const { pw } = await searchParams
-  const staffPassword = process.env.STAFF_PASSWORD ?? 'staff'
-
-  if (pw !== staffPassword) {
-    return (
-      <div className="container" style={{ paddingBlock: '2rem', maxWidth: '480px' }}>
-        <h1>Staff Dashboard</h1>
-        <p>Enter the staff password to continue.</p>
-        <form method="GET">
-          <label>
-            Password
-            <input name="pw" type="password" autoComplete="current-password" />
-          </label>
-          <button type="submit">Enter</button>
-        </form>
-      </div>
-    )
-  }
-
+export default async function StaffPage() {
   const [appointments, agents] = await Promise.all([
     db.appointment.findMany({
       include: { agent: true, ailment: true, therapy: true },

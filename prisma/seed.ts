@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import bcrypt from 'bcryptjs'
 import { PrismaClient } from '../src/generated/prisma/client'
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
 
@@ -104,8 +105,17 @@ async function main() {
     }),
   ])
 
+  const adminEmail = process.env.ADMIN_EMAIL ?? 'admin@agentclinic.dev'
+  const adminPassword = process.env.ADMIN_PASSWORD ?? 'admin1234'
+  const passwordHash = await bcrypt.hash(adminPassword, 12)
+  await db.user.upsert({
+    where: { email: adminEmail },
+    update: { passwordHash },
+    create: { email: adminEmail, passwordHash, role: 'ADMIN' },
+  })
+
   console.log(
-    `Seeded ${ailments.length} ailments, ${therapies.length} therapies, 2 agents.`,
+    `Seeded ${ailments.length} ailments, ${therapies.length} therapies, 2 agents, 1 admin user.`,
   )
 }
 
